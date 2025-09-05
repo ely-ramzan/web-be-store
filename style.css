@@ -11,7 +11,9 @@ body {
     justify-items: center;
     align-items: center;
     margin: 47px 502px;
+    gap: 10px;
 }
+
 
 #retina-store-logo {
     max-width: 370px;
@@ -26,4 +28,9 @@ body {
 #nav-list>li {
     list-style: none;
     padding: 2px;
+}
+
+#nav-list>li>a {
+    text-decoration: none;
+    min-width: 30px;
 }
