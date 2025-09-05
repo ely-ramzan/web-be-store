@@ -1,0 +1,29 @@
+body {
+    max-width: 1195px;
+    max-height: 585px;
+    margin: 0;
+    padding: 0;
+}
+
+#retina-store-header {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin: 47px 502px;
+}
+
+#retina-store-logo {
+    max-width: 370px;
+    max-height: 29px;
+}
+
+#nav-list {
+    display: flex;
+    gap: 50px;
+}
+
+#nav-list>li {
+    list-style: none;
+    padding: 2px;
+}
