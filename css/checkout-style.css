@@ -1,0 +1,98 @@
+/* Custom Styles for Checkout Page */
+:root {
+    --primary-color: #a4916d;
+    --secondary-color: #6c757d;
+    --primary-font: 'Lato', sans-serif;
+    --border-color: #dee2e6;
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: #f8f9fa;
+}
+
+/* Progress Header */
+.progress-header {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.progress-header .step {
+    color: #6c757d;
+    position: relative;
+    padding-bottom: 5px;
+}
+.progress-header .step.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.progress-header .step.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Form Controls */
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(164, 145, 109, 0.25);
+}
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.form-check-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(164, 145, 109, 0.25);
+}
+
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: #917a4d;
+    border-color: #917a4d;
+}
+.btn-primary:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+     background-color: #e9ecef;
+     border-color: var(--border-color);
+     color: #000;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+}
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+}
+.badge.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.invalid-feedback.d-block {
+    display: block !important;
+}
+
+@media (max-width: 767px) {
+    .progress-header {
+        font-size: 0.8rem;
+    }
+}

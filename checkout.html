@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - BeStore</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="css/checkout-style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <header id="site-header" class="site-header">
+      <div class="header-placeholder"></div>
+      <div id="top-bar" class="top-bar-wrapper">
+        <div class="header-top"></div>
+        <div class="main-header-area">
+          <div class="container main-header-container">
+            <div class="logo">
+              <a href="index.html">
+                <img
+                  class="logo-main"
+                  src="https://themes.muffingroup.com/be/store/wp-content/uploads/2015/03/store.png"
+                  alt="BeStore Logo"
+                />
+                <img
+                  class="logo-sticky"
+                  src="https://themes.muffingroup.com/be/store/wp-content/uploads/2015/03/store_s.png"
+                  alt="BeStore Sticky Logo"
+                />
+              </a>
+            </div>
+            <nav class="main-nav">
+              <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="#">FOR HER</a></li>
+                <li><a href="#">FOR HIM</a></li>
+                <li><a href="#">BRANDS</a></li>
+                <li><a href="#">BLOG</a></li>
+                <li><a href="#">CONTACT US</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="top_bar_right">
+            <a
+              href="checkout.html"
+              class="cart-icon"
+              aria-label="Shopping Cart"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                ></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              <span>1</span>
+            </a>
+            <a href="#" class="search-icon" aria-label="Search">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <header class="py-3 border-bottom bg-white">
+      <div class="container">
+        <div class="progress-header">
+          <div class="step">Cart</div>
+          <div class="step active">Address</div>
+          <div class="step">Payment</div>
+          <div class="step">Review</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container my-5">
+      <div class="row g-5">
+        <div class="col-md-7">
+          <h4>Billing Details</h4>
+          <form id="checkout-form" novalidate>
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="fullName" class="form-label">Full name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Required, must be at least 3 characters.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="you@example.com"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email address.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" class="form-control" id="phone" required />
+                <div class="invalid-feedback">
+                  Required, must be digits only, at least 10 digits.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="1234 Main St"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Choose...</option>
+                  <option>United States</option>
+                  <option>Canada</option>
+                  <option>United Kingdom</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" required />
+                <div class="invalid-feedback">City is required.</div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Postal code</label>
+                <input type="text" class="form-control" id="zip" required />
+                <div class="invalid-feedback">Must be a 4-6 digit number.</div>
+              </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="same-address"
+              />
+              <label class="form-check-label" for="same-address"
+                >Billing address is the same as my shipping address</label
+              >
+            </div>
+
+            <hr class="my-4" />
+
+            <h4 class="mb-3">Payment</h4>
+            <div class="my-3">
+              <div class="form-check">
+                <input
+                  id="credit"
+                  name="paymentMethod"
+                  type="radio"
+                  class="form-check-input"
+                  required
+                />
+                <label class="form-check-label" for="credit">Credit card</label>
+              </div>
+              <div class="form-check">
+                <input
+                  id="cod"
+                  name="paymentMethod"
+                  type="radio"
+                  class="form-check-input"
+                  required
+                />
+                <label class="form-check-label" for="cod"
+                  >Cash on Delivery (COD)</label
+                >
+              </div>
+              <div class="form-check">
+                <input
+                  id="wallet"
+                  name="paymentMethod"
+                  type="radio"
+                  class="form-check-input"
+                  required
+                />
+                <label class="form-check-label" for="wallet">Wallet</label>
+              </div>
+              <div
+                class="invalid-feedback d-block"
+                id="payment-method-feedback"
+              ></div>
+            </div>
+
+            <div class="row gy-3" id="credit-card-fields" style="display: none">
+              <div class="col-md-6">
+                <label for="cc-name" class="form-label">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" />
+                <div class="invalid-feedback">Name on card is required.</div>
+              </div>
+              <div class="col-md-6">
+                <label for="cc-number" class="form-label"
+                  >Credit card number</label
+                >
+                <input type="text" class="form-control" id="cc-number" />
+                <div class="invalid-feedback">
+                  Credit card number is required.
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="cc-expiration" class="form-label">Expiration</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cc-expiration"
+                  placeholder="MM/YY"
+                />
+                <div class="invalid-feedback">Expiration date required.</div>
+              </div>
+              <div class="col-md-3">
+                <label for="cc-cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" />
+                <div class="invalid-feedback">Security code required.</div>
+              </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="terms-check"
+                required
+              />
+              <label class="form-check-label" for="terms-check"
+                >I have read and agree to the website terms and
+                conditions</label
+              >
+              <div class="invalid-feedback">
+                You must agree before placing an order.
+              </div>
+            </div>
+
+            <button
+              id="place-order-btn"
+              class="w-100 btn btn-primary btn-lg mt-4"
+              type="submit"
+              disabled
+            >
+              Place Order
+            </button>
+          </form>
+        </div>
+
+        <div class="col-md-5">
+          <div class="position-sticky" style="top: 2rem">
+            <div class="card">
+              <div class="card-header">
+                <h4
+                  class="d-flex justify-content-between align-items-center mb-0"
+                >
+                  <span>Order Summary</span>
+                  <span class="badge bg-primary rounded-pill">1</span>
+                </h4>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item d-flex justify-content-between lh-sm"
+                >
+                  <div>
+                    <h6 class="my-0">Woo Album #1</h6>
+                    <small class="text-muted">Quantity: 1</small>
+                  </div>
+                  <span class="text-muted">&pound;9.00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Subtotal</span>
+                  <strong>&pound;9.00</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Shipping</span>
+                  <strong>&pound;5.00</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Tax (20%)</span>
+                  <strong>&pound;1.80</strong>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between bg-light"
+                >
+                  <span class="fw-bold">Grand Total</span>
+                  <strong class="fw-bold">&pound;15.80</strong>
+                </li>
+              </ul>
+              <div class="card-body">
+                <form>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Promo code"
+                    />
+                    <button type="submit" class="btn btn-secondary">
+                      Apply
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-column">
+          <img
+            src="https://themes.muffingroup.com/be/store/wp-content/uploads/2015/03/home_store_logo_footer.png"
+            alt="BeStore Footer Logo"
+            class="footer-logo"
+          />
+          <h5>Vitae adipiscing turpis</h5>
+          <p>Aenean ligula nibh in, molestie apibus</p>
+        </div>
+        <div class="footer-column">
+          <h4>Popular categories</h4>
+          <ul>
+            <li><a href="#">Aenean ligula</a></li>
+            <li><a href="#">Dapibus at dolor</a></li>
+            <li><a href="#">Molestie id</a></li>
+            <li><a href="#">Vestibulum</a></li>
+            <li><a href="#">Aenean ligula</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Useful links</h4>
+          <ul>
+            <li><a href="#">Velit mauris</a></li>
+            <li><a href="#">Entum feuis</a></li>
+            <li><a href="#">Aliquam massa</a></li>
+            <li><a href="#">Egestas quam</a></li>
+            <li><a href="#">Velit mauris</a></li>
+          </ul>
+        </div>
+        <div class="footer-column newsletter">
+          <h4><span class="highlight-font">Be</span> NEWSLETTER</h4>
+          <form>
+            <input
+              type="email"
+              placeholder="Your email address"
+              aria-label="Email for newsletter"
+            />
+            <button type="submit">+</button>
+          </form>
+          <p>Vitae adipiscing turpis Aenean ligula nibh in molestie</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Betheme by Muffin group | All Rights Reserved</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="js/validation.js"></script>
+  </body>
+</html>
