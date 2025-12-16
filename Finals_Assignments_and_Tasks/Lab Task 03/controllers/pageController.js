@@ -1,6 +1,3 @@
-// Page Controller - Handles all page rendering for Lab Task 03
-
-// Home Page
 exports.getHome = (req, res) => {
     res.render('home', {
         title: 'BeStore - Home',
@@ -8,7 +5,6 @@ exports.getHome = (req, res) => {
     });
 };
 
-// Checkout Page
 exports.getCheckout = (req, res) => {
     res.render('checkout', {
         title: 'Checkout - BeStore',
@@ -16,7 +12,6 @@ exports.getCheckout = (req, res) => {
     });
 };
 
-// For Her Category Page
 exports.getForHer = (req, res) => {
     res.render('for-her', {
         title: 'For Her - BeStore',
@@ -24,7 +19,6 @@ exports.getForHer = (req, res) => {
     });
 };
 
-// For Him Category Page
 exports.getForHim = (req, res) => {
     res.render('for-him', {
         title: 'For Him - BeStore',
@@ -32,7 +26,6 @@ exports.getForHim = (req, res) => {
     });
 };
 
-// Brands Page
 exports.getBrands = (req, res) => {
     res.render('brands', {
         title: 'Brands - BeStore',
@@ -40,7 +33,6 @@ exports.getBrands = (req, res) => {
     });
 };
 
-// Blog Page
 exports.getBlog = (req, res) => {
     res.render('blog', {
         title: 'Blog - BeStore',
@@ -48,7 +40,6 @@ exports.getBlog = (req, res) => {
     });
 };
 
-// Contact Page
 exports.getContact = (req, res) => {
     res.render('contact', {
         title: 'Contact Us - BeStore',

@@ -1,7 +1,5 @@
-// Product Controller - Handles product-related pages and API
 const Product = require('../models/ProductSchema');
 
-// For Her Page - Server-side rendering
 exports.getForHer = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -12,7 +10,6 @@ exports.getForHer = async (req, res) => {
         const minPrice = req.query.minPrice || '';
         const maxPrice = req.query.maxPrice || '';
 
-        // Build filter
         const filter = { category: 'for-her' };
         if (productType) filter.productType = productType;
         if (minPrice || maxPrice) {
@@ -21,7 +18,6 @@ exports.getForHer = async (req, res) => {
             if (maxPrice) filter.price.$lte = parseFloat(maxPrice);
         }
 
-        // Build sort
         let sort = {};
         if (sortBy === 'price-low') sort.price = 1;
         else if (sortBy === 'price-high') sort.price = -1;
@@ -59,7 +55,6 @@ exports.getForHer = async (req, res) => {
     }
 };
 
-// For Him Page - Server-side rendering
 exports.getForHim = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -70,7 +65,6 @@ exports.getForHim = async (req, res) => {
         const minPrice = req.query.minPrice || '';
         const maxPrice = req.query.maxPrice || '';
 
-        // Build filter
         const filter = { category: 'for-him' };
         if (productType) filter.productType = productType;
         if (minPrice || maxPrice) {
@@ -79,7 +73,6 @@ exports.getForHim = async (req, res) => {
             if (maxPrice) filter.price.$lte = parseFloat(maxPrice);
         }
 
-        // Build sort
         let sort = {};
         if (sortBy === 'price-low') sort.price = 1;
         else if (sortBy === 'price-high') sort.price = -1;
@@ -117,14 +110,12 @@ exports.getForHim = async (req, res) => {
     }
 };
 
-// API: Get all products with filters
 exports.getProducts = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         const skip = (page - 1) * limit;
 
-        // Build filter
         const filter = {};
         if (req.query.category) filter.category = req.query.category;
         if (req.query.productType) filter.productType = req.query.productType;
@@ -134,7 +125,6 @@ exports.getProducts = async (req, res) => {
             if (req.query.maxPrice) filter.price.$lte = parseFloat(req.query.maxPrice);
         }
 
-        // Build sort
         let sort = {};
         if (req.query.sortBy === 'price-low') sort.price = 1;
         else if (req.query.sortBy === 'price-high') sort.price = -1;
@@ -162,7 +152,6 @@ exports.getProducts = async (req, res) => {
     }
 };
 
-// API: Get single product
 exports.getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);

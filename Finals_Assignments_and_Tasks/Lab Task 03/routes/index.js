@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-// Import Controller
 const pageController = require('../controllers/pageController');
 
-// All Routes - Delegated to Controller
 router.get('/', pageController.getHome);
 router.get('/checkout', pageController.getCheckout);
 router.get('/for-her', pageController.getForHer);

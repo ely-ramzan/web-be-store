@@ -1,7 +1,5 @@
-// Product Controller - Handles product-related pages and API
 const Product = require('../models/ProductSchema');
 
-// For Her Page - Server-side rendering
 exports.getForHer = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -50,7 +48,6 @@ exports.getForHer = async (req, res) => {
     }
 };
 
-// For Him Page - Server-side rendering
 exports.getForHim = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -99,7 +96,6 @@ exports.getForHim = async (req, res) => {
     }
 };
 
-// API: Get all products with filters
 exports.getProducts = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -135,7 +131,6 @@ exports.getProducts = async (req, res) => {
     }
 };
 
-// API: Get single product
 exports.getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);

@@ -1,7 +1,5 @@
-// Admin Controller - Handles admin panel operations
 const Product = require('../models/ProductSchema');
 
-// Dashboard
 exports.getDashboard = async (req, res) => {
     try {
         const totalProducts = await Product.countDocuments();
@@ -31,7 +29,6 @@ exports.getDashboard = async (req, res) => {
     }
 };
 
-// Product List (READ)
 exports.getProducts = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -73,7 +70,6 @@ exports.getProducts = async (req, res) => {
     }
 };
 
-// Add Product Form (CREATE - GET)
 exports.getAddProduct = (req, res) => {
     res.render('admin/product-form', {
         title: 'Add Product',
@@ -84,7 +80,6 @@ exports.getAddProduct = (req, res) => {
     });
 };
 
-// Add Product (CREATE - POST)
 exports.postAddProduct = async (req, res) => {
     try {
         const { name, price, description, image, category, productType, stock } = req.body;
@@ -112,7 +107,6 @@ exports.postAddProduct = async (req, res) => {
     }
 };
 
-// Edit Product Form (UPDATE - GET)
 exports.getEditProduct = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -132,7 +126,6 @@ exports.getEditProduct = async (req, res) => {
     }
 };
 
-// Update Product (UPDATE - POST)
 exports.postEditProduct = async (req, res) => {
     try {
         const { name, price, description, image, category, productType, stock } = req.body;
@@ -152,7 +145,6 @@ exports.postEditProduct = async (req, res) => {
     }
 };
 
-// Delete Confirmation Page (DELETE - GET)
 exports.getDeleteProduct = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -170,7 +162,6 @@ exports.getDeleteProduct = async (req, res) => {
     }
 };
 
-// Delete Product (DELETE - POST)
 exports.postDeleteProduct = async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id);

@@ -1,13 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-// Import Controller
 const adminController = require('../controllers/adminController');
 
-// Dashboard
 router.get('/', adminController.getDashboard);
-
-// Products CRUD
 router.get('/products', adminController.getProducts);
 router.get('/products/add', adminController.getAddProduct);
 router.post('/products/add', adminController.postAddProduct);
