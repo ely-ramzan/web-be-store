@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/category.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="page-header">
+                <div class="container">
+                    <h1>FOR HER</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <span>For Her</span>
+                    </div>
+                </div>
+            </div>
+
+            <main class="container">
+                <div class="category-layout">
+                    <aside class="category-sidebar">
+                        <div class="sidebar-widget">
+                            <h4>Categories</h4>
+                            <ul>
+                                <li><a href="#">Clothing <span>(45)</span></a></li>
+                                <li><a href="#">Dresses <span>(12)</span></a></li>
+                                <li><a href="#">Jackets <span>(8)</span></a></li>
+                                <li><a href="#">Jeans <span>(15)</span></a></li>
+                                <li><a href="#">Shorts <span>(6)</span></a></li>
+                                <li><a href="#">Tops <span>(18)</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4>Shoes</h4>
+                            <ul>
+                                <li><a href="#">Ankle boots <span>(7)</span></a></li>
+                                <li><a href="#">Ballet pumps <span>(5)</span></a></li>
+                                <li><a href="#">Heels <span>(9)</span></a></li>
+                                <li><a href="#">Sandals <span>(11)</span></a></li>
+                                <li><a href="#">Slippers <span>(4)</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4>Accessories</h4>
+                            <ul>
+                                <li><a href="#">Bags <span>(14)</span></a></li>
+                                <li><a href="#">Belts <span>(6)</span></a></li>
+                                <li><a href="#">Hats & Caps <span>(8)</span></a></li>
+                                <li><a href="#">Rucksacks <span>(5)</span></a></li>
+                                <li><a href="#">Sunglasses <span>(10)</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4>Filter by Price</h4>
+                            <div class="price-filter">
+                                <div class="price-slider"></div>
+                                <div class="price-range">
+                                    <span>£0</span>
+                                    <span>£500</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <div class="category-content">
+                        <div class="category-toolbar">
+                            <span class="results-count">Showing 1–9 of 24 results</span>
+                            <select class="sort-select">
+                                <option>Default sorting</option>
+                                <option>Sort by popularity</option>
+                                <option>Sort by average rating</option>
+                                <option>Sort by latest</option>
+                                <option>Sort by price: low to high</option>
+                                <option>Sort by price: high to low</option>
+                            </select>
+                        </div>
+
+                        <div class="category-product-grid">
+                            <div class="category-product-card">
+                                <div class="product-image">
+                                    <a href="#">
+                                        <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2013/06/home_store_product1-700x700.jpg"
+                                            alt="Woo Album #1">
+                                    </a>
+                                </div>
+                                <h4 class="product-title"><a href="#">Woo Album #1</a></h4>
+                                <div class="product-price">&pound;9.00</div>
+                                <a href="#" class="add-to-cart">Add to Cart</a>
+                            </div>
+                            <div class="category-product-card">
+                                <div class="product-image">
+                                    <a href="#">
+                                        <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2013/06/home_store_product2-700x700.jpg"
+                                            alt="Woo Logo">
+                                    </a>
+                                </div>
+                                <h4 class="product-title"><a href="#">Woo Logo</a></h4>
+                                <div class="product-price">&pound;15.00</div>
+                                <a href="#" class="add-to-cart">Add to Cart</a>
+                            </div>
+                            <div class="category-product-card">
+                                <div class="product-image">
+                                    <a href="#">
+                                        <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2015/03/home_store_product3-700x700.jpg"
+                                            alt="Woo Ninja">
+                                    </a>
+                                </div>
+                                <h4 class="product-title"><a href="#">Woo Ninja</a></h4>
+                                <div class="product-price">&pound;15.00</div>
+                                <a href="#" class="add-to-cart">Add to Cart</a>
+                            </div>
+                            <div class="category-product-card">
+                                <div class="product-image">
+                                    <a href="#">
+                                        <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2013/06/home_store_product4-700x700.jpg"
+                                            alt="Premium Quality">
+                                    </a>
+                                </div>
+                                <h4 class="product-title"><a href="#">Premium Quality</a></h4>
+                                <div class="product-price"><del>&pound;15.00</del> &pound;12.00</div>
+                                <a href="#" class="add-to-cart">Add to Cart</a>
+                            </div>
+                            <div class="category-product-card">
+                                <div class="product-image">
+                                    <a href="#">
+                                        <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2013/06/home_store_product5-700x700.jpg"
+                                            alt="Flying Ninja">
+                                    </a>
+                                </div>
+                                <h4 class="product-title"><a href="#">Flying Ninja</a></h4>
+                                <div class="product-price"><del>&pound;15.00</del> &pound;12.00</div>
+                                <a href="#" class="add-to-cart">Add to Cart</a>
+                            </div>
+                            <div class="category-product-card">
+                                <div class="product-image">
+                                    <a href="#">
+                                        <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2013/06/home_store_product6-700x700.jpg"
+                                            alt="Happy Ninja">
+                                    </a>
+                                </div>
+                                <h4 class="product-title"><a href="#">Happy Ninja</a></h4>
+                                <div class="product-price">&pound;18.00</div>
+                                <a href="#" class="add-to-cart">Add to Cart</a>
+                            </div>
+                        </div>
+
+                        <div class="pagination">
+                            <span class="current">1</span>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">→</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <%- include('partials/footer') %>
+    </body>
+
+</html>

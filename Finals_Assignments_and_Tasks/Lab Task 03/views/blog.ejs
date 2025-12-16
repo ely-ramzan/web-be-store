@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/blog.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="blog-page-header">
+                <div class="container">
+                    <h1>BLOG</h1>
+                </div>
+            </div>
+
+            <main class="container">
+                <div class="blog-layout">
+                    <div class="blog-main">
+                        <article class="blog-post">
+                            <div class="blog-post-image">
+                                <a href="#">
+                                    <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2014/05/home_store_blog1.jpg"
+                                        alt="Blog Post 1">
+                                </a>
+                            </div>
+                            <div class="blog-post-meta">
+                                <span>May 9, 2014</span>
+                                <span>By <a href="#">Admin</a></span>
+                                <span><a href="#">2 Comments</a></span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#">Proin dui sodales imperdi sit sapien fames ac luctus</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis
+                                sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi
+                                accumsan ipsum velit.
+                            </p>
+                            <a href="#" class="read-more">Read More</a>
+                        </article>
+
+                        <article class="blog-post">
+                            <div class="blog-post-image">
+                                <a href="#">
+                                    <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2014/05/home_store_blog2.jpg"
+                                        alt="Blog Post 2">
+                                </a>
+                            </div>
+                            <div class="blog-post-meta">
+                                <span>May 8, 2014</span>
+                                <span>By <a href="#">Admin</a></span>
+                                <span><a href="#">0 Comments</a></span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#">Vestibulum commodo volutpat laoreet</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat
+                                consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia
+                                nostra, per inceptos himenaeos.
+                            </p>
+                            <a href="#" class="read-more">Read More</a>
+                        </article>
+
+                        <article class="blog-post">
+                            <div class="blog-post-image">
+                                <a href="#">
+                                    <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2014/05/home_store_blog3.jpg"
+                                        alt="Blog Post 3">
+                                </a>
+                            </div>
+                            <div class="blog-post-meta">
+                                <span>May 7, 2014</span>
+                                <span>By <a href="#">Admin</a></span>
+                                <span><a href="#">0 Comments</a></span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#">Quisque lorem tortor fringilla sed vestibulum justo vel</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed
+                                non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc.
+                            </p>
+                            <a href="#" class="read-more">Read More</a>
+                        </article>
+                    </div>
+
+                    <aside class="blog-sidebar">
+                        <div class="blog-widget">
+                            <h4>Categories</h4>
+                            <ul>
+                                <li><a href="#">Fashion Tips</a></li>
+                                <li><a href="#">Style Guide</a></li>
+                                <li><a href="#">Trends</a></li>
+                                <li><a href="#">Collections</a></li>
+                                <li><a href="#">Lifestyle</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="blog-widget">
+                            <h4>Recent Posts</h4>
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2014/05/home_store_blog1.jpg"
+                                        alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h5><a href="#">Proin dui sodales imperdi sit</a></h5>
+                                    <span>May 9, 2014</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2014/05/home_store_blog2.jpg"
+                                        alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h5><a href="#">Vestibulum commodo volutpat</a></h5>
+                                    <span>May 8, 2014</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="https://themes.muffingroup.com/be/store/wp-content/uploads/2014/05/home_store_blog3.jpg"
+                                        alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h5><a href="#">Quisque lorem tortor fringilla</a></h5>
+                                    <span>May 7, 2014</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="blog-widget">
+                            <h4>Tags</h4>
+                            <ul>
+                                <li><a href="#">Fashion</a></li>
+                                <li><a href="#">Style</a></li>
+                                <li><a href="#">Trends</a></li>
+                                <li><a href="#">Summer</a></li>
+                                <li><a href="#">Winter</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </main>
+
+            <%- include('partials/footer') %>
+    </body>
+
+</html>

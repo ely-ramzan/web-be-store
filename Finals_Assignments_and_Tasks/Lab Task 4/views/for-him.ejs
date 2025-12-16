@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/category.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="page-header">
+                <div class="container">
+                    <h1>FOR HIM</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <span>For Him</span>
+                    </div>
+                </div>
+            </div>
+
+            <main class="container">
+                <div class="category-layout">
+                    <aside class="category-sidebar">
+                        <div class="sidebar-widget">
+                            <h4>Product Type</h4>
+                            <ul class="filter-list">
+                                <li><a href="/for-him"
+                                        class="filter-link <%= !filters.productType ? 'active' : '' %>">All Products</a>
+                                </li>
+                                <li><a href="/for-him?productType=clothing"
+                                        class="filter-link <%= filters.productType === 'clothing' ? 'active' : '' %>">Clothing</a>
+                                </li>
+                                <li><a href="/for-him?productType=shoes"
+                                        class="filter-link <%= filters.productType === 'shoes' ? 'active' : '' %>">Shoes</a>
+                                </li>
+                                <li><a href="/for-him?productType=accessories"
+                                        class="filter-link <%= filters.productType === 'accessories' ? 'active' : '' %>">Accessories</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4>Filter by Price</h4>
+                            <form action="/for-him" method="GET" class="price-filter">
+                                <input type="hidden" name="productType" value="<%= filters.productType || '' %>">
+                                <input type="hidden" name="sortBy" value="<%= filters.sortBy || '' %>">
+                                <div class="price-inputs">
+                                    <input type="number" name="minPrice" placeholder="Min" min="0"
+                                        value="<%= filters.minPrice || '' %>">
+                                    <span>-</span>
+                                    <input type="number" name="maxPrice" placeholder="Max" min="0"
+                                        value="<%= filters.maxPrice || '' %>">
+                                </div>
+                                <button type="submit" class="apply-filter-btn">Apply</button>
+                            </form>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4>Items Per Page</h4>
+                            <form action="/for-him" method="GET">
+                                <input type="hidden" name="productType" value="<%= filters.productType || '' %>">
+                                <input type="hidden" name="sortBy" value="<%= filters.sortBy || '' %>">
+                                <input type="hidden" name="minPrice" value="<%= filters.minPrice || '' %>">
+                                <input type="hidden" name="maxPrice" value="<%= filters.maxPrice || '' %>">
+                                <select name="limit" class="limit-select" onchange="this.form.submit()">
+                                    <option value="6" <%=pagination.limit===6 ? 'selected' : '' %>>6</option>
+                                    <option value="10" <%=pagination.limit===10 ? 'selected' : '' %>>10</option>
+                                    <option value="20" <%=pagination.limit===20 ? 'selected' : '' %>>20</option>
+                                    <option value="50" <%=pagination.limit===50 ? 'selected' : '' %>>50</option>
+                                </select>
+                            </form>
+                        </div>
+                    </aside>
+
+                    <div class="category-content">
+                        <div class="category-toolbar">
+                            <span class="results-count">
+                                <% if (pagination.totalProducts> 0) { %>
+                                    Showing <%= ((pagination.currentPage - 1) * pagination.limit) + 1 %>–<%=
+                                            Math.min(pagination.currentPage * pagination.limit,
+                                            pagination.totalProducts) %> of <%= pagination.totalProducts %> results
+                                                <% } else { %>
+                                                    No products found
+                                                    <% } %>
+                            </span>
+                            <form action="/for-him" method="GET" style="display: inline;">
+                                <input type="hidden" name="productType" value="<%= filters.productType || '' %>">
+                                <input type="hidden" name="minPrice" value="<%= filters.minPrice || '' %>">
+                                <input type="hidden" name="maxPrice" value="<%= filters.maxPrice || '' %>">
+                                <input type="hidden" name="limit" value="<%= pagination.limit %>">
+                                <select name="sortBy" class="sort-select" onchange="this.form.submit()">
+                                    <option value="" <%=!filters.sortBy ? 'selected' : '' %>>Default sorting</option>
+                                    <option value="price-low" <%=filters.sortBy==='price-low' ? 'selected' : '' %>
+                                        >Price: Low to High</option>
+                                    <option value="price-high" <%=filters.sortBy==='price-high' ? 'selected' : '' %>
+                                        >Price: High to Low</option>
+                                    <option value="name" <%=filters.sortBy==='name' ? 'selected' : '' %>>Name: A to Z
+                                    </option>
+                                </select>
+                            </form>
+                        </div>
+
+                        <div class="category-product-grid">
+                            <% if (typeof error !=='undefined' ) { %>
+                                <p class="error">
+                                    <%= error %>
+                                </p>
+                                <% } else if (products.length===0) { %>
+                                    <p class="no-products">No products found matching your criteria.</p>
+                                    <% } else { %>
+                                        <% products.forEach(product=> { %>
+                                            <div class="category-product-card">
+                                                <div class="product-image">
+                                                    <a href="#">
+                                                        <img src="<%= product.image %>" alt="<%= product.name %>"
+                                                            onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
+                                                    </a>
+                                                </div>
+                                                <h4 class="product-title"><a href="#">
+                                                        <%= product.name %>
+                                                    </a></h4>
+                                                <div class="product-price">£<%= product.price.toFixed(2) %>
+                                                </div>
+                                                <span class="product-type-badge">
+                                                    <%= product.productType %>
+                                                </span>
+                                                <a href="#" class="add-to-cart">Add to Cart</a>
+                                            </div>
+                                            <% }); %>
+                                                <% } %>
+                        </div>
+
+                        <% if (pagination.totalPages> 1) { %>
+                            <div class="pagination">
+                                <% if (pagination.hasPrevPage) { %>
+                                    <a
+                                        href="/for-him?page=<%= pagination.currentPage - 1 %>&productType=<%= filters.productType || '' %>&sortBy=<%= filters.sortBy || '' %>&limit=<%= pagination.limit %>&minPrice=<%= filters.minPrice || '' %>&maxPrice=<%= filters.maxPrice || '' %>">←</a>
+                                    <% } %>
+                                        <% for (let i=1; i <=pagination.totalPages; i++) { %>
+                                            <% if (i===pagination.currentPage) { %>
+                                                <span class="current">
+                                                    <%= i %>
+                                                </span>
+                                                <% } else { %>
+                                                    <a
+                                                        href="/for-him?page=<%= i %>&productType=<%= filters.productType || '' %>&sortBy=<%= filters.sortBy || '' %>&limit=<%= pagination.limit %>&minPrice=<%= filters.minPrice || '' %>&maxPrice=<%= filters.maxPrice || '' %>">
+                                                        <%= i %>
+                                                    </a>
+                                                    <% } %>
+                                                        <% } %>
+                                                            <% if (pagination.hasNextPage) { %>
+                                                                <a
+                                                                    href="/for-him?page=<%= pagination.currentPage + 1 %>&productType=<%= filters.productType || '' %>&sortBy=<%= filters.sortBy || '' %>&limit=<%= pagination.limit %>&minPrice=<%= filters.minPrice || '' %>&maxPrice=<%= filters.maxPrice || '' %>">→</a>
+                                                                <% } %>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+            </main>
+
+            <%- include('partials/footer') %>
+    </body>
+
+</html>

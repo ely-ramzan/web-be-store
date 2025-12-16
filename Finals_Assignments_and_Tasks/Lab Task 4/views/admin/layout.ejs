@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %> | BeStore Admin
+    </title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>BeStore</h2>
+                <span class="admin-badge">Admin Panel</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/admin" class="<%= currentPage === 'dashboard' ? 'active' : '' %>">
+                            <span class="icon">◈</span> Dashboard
+                        </a></li>
+                    <li><a href="/admin/products" class="<%= currentPage === 'products' ? 'active' : '' %>">
+                            <span class="icon">◇</span> All Products
+                        </a></li>
+                    <li><a href="/admin/products/add" class="<%= currentPage === 'add-product' ? 'active' : '' %>">
+                            <span class="icon">+</span> Add New
+                        </a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="/" class="back-to-site">← View Store</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>
+                    <%= pageTitle || title %>
+                </h1>
+                <div class="admin-user">
+                    <span>Welcome, Admin</span>
+                </div>
+            </header>
+            <div class="admin-content">
+                <%- body %>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

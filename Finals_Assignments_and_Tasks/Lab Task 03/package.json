@@ -1,0 +1,23 @@
+{
+  "name": "lab-task-03",
+  "version": "1.0.0",
+  "description": "BeStore E-Commerce - Express.js with EJS templating",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "fresh": "taskkill /F /IM node.exe 2>nul & node app.js"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "ecommerce"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.2.1"
+  }
+}
