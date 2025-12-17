@@ -23,5 +23,5 @@ app.use('/api/products', productsRouter);
 app.use('/admin', adminRouter);
 
 app.listen(PORT, () => {
-    console.log(`🚀 BeStore server running at http://localhost:${PORT}`);
+    console.log(`BeStore server running at http://localhost:${PORT}`);
 });

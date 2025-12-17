@@ -12,5 +12,5 @@ const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
 app.listen(PORT, () => {
-    console.log(`🚀 BeStore server running at http://localhost:${PORT}`);
+    console.log(`BeStore server running at http://localhost:${PORT}`);
 });
