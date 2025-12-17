@@ -28,9 +28,6 @@ Thumbs.db
 dist/
 build/
 
-# Package locks (optional - some prefer to commit these)
-# package-lock.json
-
 # Temporary files
 *.tmp
 *.temp
