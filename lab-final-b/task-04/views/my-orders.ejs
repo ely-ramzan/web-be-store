@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/cart.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="page-header-cart">
+                <div class="container">
+                    <h1>My Orders</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <span>My Orders</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-container">
+                <!-- Email Search Form -->
+                <div class="order-preview-box" style="max-width: 600px; margin: 0 auto 40px;">
+                    <div class="box-header">
+                        <h3>Find Your Orders</h3>
+                    </div>
+                    <div class="box-body">
+                        <p style="color: #626262; margin-bottom: 20px;">Enter your email address to view your order
+                            history.</p>
+                        <form action="/my-orders" method="POST" style="display: flex; gap: 10px;">
+                            <input type="email" name="email" placeholder="Enter your email address"
+                                value="<%= searchedEmail || '' %>"
+                                style="flex: 1; padding: 14px 15px; border: 1px solid #e7e0d3; font-family: 'Lato', sans-serif; font-size: 14px;"
+                                required>
+                            <button type="submit" class="btn-bestore btn-primary-bestore" style="padding: 14px 30px;">
+                                Find Orders
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <% if (error) { %>
+                    <div class="order-preview-box" style="max-width: 600px; margin: 0 auto;">
+                        <div class="box-body" style="text-align: center; padding: 40px;">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5"
+                                style="margin-bottom: 15px;">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            <p style="color: #626262; font-size: 16px;">
+                                <%= error %>
+                            </p>
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <% if (orders && orders.length> 0) { %>
+                            <div class="order-preview-box">
+                                <div class="box-header">
+                                    <h3>Order History for <%= searchedEmail %>
+                                    </h3>
+                                </div>
+                                <div class="box-body">
+                                    <table class="order-summary-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Date</th>
+                                                <th>Items</th>
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% orders.forEach(function(order) { %>
+                                                <tr>
+                                                    <td>
+                                                        <a href="/order/success/<%= order._id %>"
+                                                            style="color: #a4916d; font-weight: 500;">
+                                                            #<%= order._id.toString().slice(-8).toUpperCase() %>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <%= new Date(order.createdAt).toLocaleDateString('en-GB', {
+                                                            day: 'numeric' , month: 'short' , year: 'numeric' }) %>
+                                                    </td>
+                                                    <td>
+                                                        <%= order.items.reduce((sum, item)=> sum + item.quantity, 0) %>
+                                                            item(s)
+                                                    </td>
+                                                    <td style="color: #a4916d; font-weight: 500;">
+                                                        £<%= order.grandTotal.toFixed(2) %>
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="order-status-badge <%= order.status.toLowerCase() %>">
+                                                            <%= order.status %>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <% }); %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div style="text-align: center; margin-top: 30px;">
+                                <p style="color: #626262;">Showing <%= orders.length %> order(s) for <strong>
+                                            <%= searchedEmail %>
+                                        </strong></p>
+                            </div>
+                            <% } %>
+
+                                <% if (!orders && !error) { %>
+                                    <div class="order-preview-box" style="max-width: 600px; margin: 0 auto;">
+                                        <div class="box-body" style="text-align: center; padding: 40px;">
+                                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#a4916d"
+                                                stroke-width="1.5" style="margin-bottom: 15px;">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                            <p style="color: #626262; font-size: 16px;">Enter your email above to view
+                                                your orders</p>
+                                        </div>
+                                    </div>
+                                    <% } %>
+
+                                        <div style="text-align: center; margin-top: 40px;">
+                                            <a href="/" class="btn-bestore btn-outline-bestore">← Back to Home</a>
+                                        </div>
+            </div>
+
+            <style>
+                .order-status-badge {
+                    display: inline-block;
+                    padding: 5px 12px;
+                    font-size: 11px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    border-radius: 3px;
+                }
+
+                .order-status-badge.placed {
+                    background: #a4916d;
+                    color: #fff;
+                }
+
+                .order-status-badge.processing {
+                    background: #17a2b8;
+                    color: #fff;
+                }
+
+                .order-status-badge.shipped {
+                    background: #007bff;
+                    color: #fff;
+                }
+
+                .order-status-badge.delivered {
+                    background: #28a745;
+                    color: #fff;
+                }
+
+                .order-status-badge.cancelled {
+                    background: #dc3545;
+                    color: #fff;
+                }
+            </style>
+
+            <%- include('partials/footer') %>
+    </body>
+
+</html>

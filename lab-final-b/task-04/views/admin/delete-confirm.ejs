@@ -1,0 +1,24 @@
+<%- include('layout', { body: ` <div class="admin-form" style="text-align: center; max-width: 500px; margin: 0 auto;">
+    <div style="font-size: 48px; margin-bottom: 20px; color: #c44;">⚠</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; margin-bottom: 15px;">Confirm Deletion</h2>
+    <p style="color: #666; margin-bottom: 30px; line-height: 1.6;">This action cannot be undone. The product will be
+        permanently removed from your store.</p>
+
+    <div
+        style="background: #f9f7f4; padding: 25px; margin-bottom: 30px; display: flex; align-items: center; gap: 20px; justify-content: center; border: 1px solid #e8e4df;">
+        <img src="${product.image}" alt="${product.name}" style="width: 80px; height: 95px; object-fit: cover;"
+            onerror="this.src='https://via.placeholder.com/80x95?text=No+Image'">
+        <div style="text-align: left;">
+            <h3 style="font-family: 'Playfair Display', serif; font-weight: 500; margin-bottom: 8px;">${product.name}
+            </h3>
+            <p style="color: #888; margin: 0; font-size: 13px;">£${product.price.toFixed(2)} · ${product.category ===
+                'for-him' ? 'For Him' : 'For Her'} · ${product.productType}</p>
+        </div>
+    </div>
+
+    <form action="/admin/products/delete/${product._id}" method="POST" style="display: inline;">
+        <button type="submit" class="btn btn-danger">Delete Product</button>
+    </form>
+    <a href="/admin/products" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+    </div>
+    ` }) %>

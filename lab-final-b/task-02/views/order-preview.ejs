@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/cart.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="page-header-cart">
+                <div class="container">
+                    <h1>Order Preview</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <a href="/cart">Cart</a>
+                        <span>/</span>
+                        <span>Order Preview</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-progress">
+                <div class="progress-step completed">
+                    <span class="step-number">✓</span>
+                    <span>Cart</span>
+                </div>
+                <div class="progress-line completed"></div>
+                <div class="progress-step active">
+                    <span class="step-number">2</span>
+                    <span>Review</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <span class="step-number">3</span>
+                    <span>Complete</span>
+                </div>
+            </div>
+
+            <div class="cart-container">
+                <div class="cart-layout">
+                    <div class="cart-main">
+                        <div class="order-preview-box">
+                            <div class="box-header">
+                                <h3>Review Your Order</h3>
+                            </div>
+                            <div class="box-body">
+                                <p style="color: #626262; margin-bottom: 20px;">Please review your order details before
+                                    confirming.</p>
+
+                                <table class="order-summary-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 50%;">Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% cart.forEach(function(item) { %>
+                                            <tr>
+                                                <td>
+                                                    <div class="product-info">
+                                                        <% if (item.image) { %>
+                                                            <img src="<%= item.image %>" alt="<%= item.name %>"
+                                                                class="product-thumb">
+                                                            <% } %>
+                                                                <span class="product-name">
+                                                                    <%= item.name %>
+                                                                </span>
+                                                    </div>
+                                                </td>
+                                                <td>£<%= item.price.toFixed(2) %>
+                                                </td>
+                                                <td>
+                                                    <%= item.quantity %>
+                                                </td>
+                                                <td>£<%= (item.price * item.quantity).toFixed(2) %>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Code Section -->
+                        <div class="order-preview-box">
+                            <div class="box-header">
+                                <h3>Have a Coupon?</h3>
+                            </div>
+                            <div class="box-body">
+                                <% if (discountInfo && discountInfo.applied) { %>
+                                    <div class="coupon-applied">
+                                        <div
+                                            style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f0f7e6; border: 1px solid #a4916d; border-radius: 4px;">
+                                            <div>
+                                                <strong style="color: #a4916d;">✓ Coupon Applied: <%=
+                                                        discountInfo.couponCode %></strong>
+                                                <p style="margin: 5px 0 0; color: #626262; font-size: 13px;">
+                                                    <%= discountInfo.description %>
+                                                </p>
+                                            </div>
+                                            <form action="/coupon/remove" method="POST" style="margin: 0;">
+                                                <input type="hidden" name="redirectTo" value="/order/preview">
+                                                <button type="submit" class="btn-bestore btn-outline-bestore"
+                                                    style="padding: 8px 15px; font-size: 12px;">Remove</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% } else { %>
+                                        <form action="/coupon/apply" method="POST" class="coupon-form"
+                                            style="display: flex; gap: 10px;">
+                                            <input type="hidden" name="redirectTo" value="/order/preview">
+                                            <input type="text" name="coupon" placeholder="Enter coupon code"
+                                                style="flex: 1; padding: 12px 15px; border: 1px solid #e7e0d3; font-family: 'Lato', sans-serif; font-size: 14px;"
+                                                value="">
+                                            <button type="submit" class="btn-bestore btn-secondary-bestore"
+                                                style="padding: 12px 25px;">Apply Coupon</button>
+                                        </form>
+                                        <p style="margin-top: 10px; font-size: 13px; color: #999;">Try:
+                                            <strong>SAVE10</strong> for 10% off!</p>
+                                        <% } %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-sidebar">
+                        <div class="cart-totals">
+                            <h3>Order Summary</h3>
+                            <div class="totals-row">
+                                <span>Subtotal</span>
+                                <span>£<%= grandTotal.toFixed(2) %></span>
+                            </div>
+                            <div class="totals-row">
+                                <span>Shipping</span>
+                                <span style="color: #a4916d;">Free</span>
+                            </div>
+                            <% if (discountInfo && discountInfo.applied) { %>
+                                <div class="totals-row" style="color: #a4916d;">
+                                    <span>Discount (<%= discountInfo.couponCode %>)</span>
+                                    <span>-£<%= discountInfo.discountAmount.toFixed(2) %></span>
+                                </div>
+                                <% } %>
+                                    <div class="totals-row grand-total">
+                                        <span>Grand Total</span>
+                                        <span>£<%= discountInfo ? discountInfo.finalTotal.toFixed(2) :
+                                                grandTotal.toFixed(2) %></span>
+                                    </div>
+
+                                    <form action="/order/confirm" method="POST">
+                                        <button type="submit" class="btn-bestore btn-primary-bestore btn-full-width">
+                                            Confirm Order
+                                        </button>
+                                    </form>
+
+                                    <a href="/cart" class="btn-bestore btn-outline-bestore btn-full-width"
+                                        style="margin-top: 10px;">
+                                        ← Go Back to Cart
+                                    </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%- include('partials/footer') %>
+    </body>
+
+</html>

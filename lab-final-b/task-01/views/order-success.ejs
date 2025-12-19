@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/cart.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="page-header-cart">
+                <div class="container">
+                    <h1>Order Complete</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <span>Order Complete</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-progress">
+                <div class="progress-step completed">
+                    <span class="step-number">✓</span>
+                    <span>Cart</span>
+                </div>
+                <div class="progress-line completed"></div>
+                <div class="progress-step completed">
+                    <span class="step-number">✓</span>
+                    <span>Review</span>
+                </div>
+                <div class="progress-line completed"></div>
+                <div class="progress-step active">
+                    <span class="step-number">✓</span>
+                    <span>Complete</span>
+                </div>
+            </div>
+
+            <div class="cart-container">
+                <div class="order-success">
+                    <div class="success-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                        </svg>
+                    </div>
+                    <h2>Thank you for your order!</h2>
+                    <p>Your order has been placed successfully and is being processed.</p>
+
+                    <div class="order-info">
+                        <div class="order-info-item">
+                            <span class="label">Order ID</span>
+                            <span class="value">
+                                <%= order._id %>
+                            </span>
+                        </div>
+                        <div class="order-info-item">
+                            <span class="label">Date</span>
+                            <span class="value">
+                                <%= new Date(order.createdAt).toLocaleDateString('en-GB', { day: 'numeric' ,
+                                    month: 'short' , year: 'numeric' }) %>
+                            </span>
+                        </div>
+                        <div class="order-info-item">
+                            <span class="label">Status</span>
+                            <span class="order-status-badge">
+                                <%= order.status %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-preview-box">
+                    <div class="box-header">
+                        <h3>Order Summary</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="order-summary-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50%;">Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% order.items.forEach(function(item) { %>
+                                    <tr>
+                                        <td>
+                                            <div class="product-info">
+                                                <% if (item.image) { %>
+                                                    <img src="<%= item.image %>" alt="<%= item.name %>"
+                                                        class="product-thumb">
+                                                    <% } %>
+                                                        <span class="product-name">
+                                                            <%= item.name %>
+                                                        </span>
+                                            </div>
+                                        </td>
+                                        <td>£<%= item.price.toFixed(2) %>
+                                        </td>
+                                        <td>
+                                            <%= item.quantity %>
+                                        </td>
+                                        <td>£<%= (item.price * item.quantity).toFixed(2) %>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="total-label">Grand Total:</td>
+                                    <td class="total-value">£<%= order.grandTotal.toFixed(2) %>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="/" class="btn-bestore btn-primary-bestore" style="margin-right: 15px;">Continue
+                        Shopping</a>
+                    <a href="/for-her" class="btn-bestore btn-outline-bestore">Browse Products</a>
+                </div>
+            </div>
+
+            <%- include('partials/footer') %>
+    </body>
+
+</html>

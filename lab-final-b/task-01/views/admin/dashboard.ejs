@@ -1,0 +1,64 @@
+<%- include('layout', { body: ` <div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon">◈</div>
+        <div class="stat-value">${stats.totalProducts}</div>
+        <div class="stat-label">Total Products</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">♂</div>
+        <div class="stat-value">${stats.forHimCount}</div>
+        <div class="stat-label">For Him</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">♀</div>
+        <div class="stat-value">${stats.forHerCount}</div>
+        <div class="stat-label">For Her</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">◇</div>
+        <div class="stat-value">${stats.clothingCount + stats.shoesCount + stats.accessoriesCount}</div>
+        <div class="stat-label">Categories</div>
+    </div>
+    </div>
+
+    <div class="admin-table-container">
+        <div class="table-header">
+            <h2>Recently Added</h2>
+            <a href="/admin/products/add" class="btn btn-primary">+ Add Product</a>
+        </div>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${recentProducts.map(product => `
+                <tr>
+                    <td><img src="${product.image}" alt="${product.name}" class="product-image"
+                            onerror="this.src='https://via.placeholder.com/60x70?text=No+Image'"></td>
+                    <td><strong>${product.name}</strong></td>
+                    <td>£${product.price.toFixed(2)}</td>
+                    <td><span class="badge badge-${product.category}">${product.category === 'for-him' ? 'Him' :
+                            'Her'}</span></td>
+                    <td><span class="badge badge-${product.productType}">${product.productType}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="/admin/products/edit/${product._id}" class="btn btn-secondary btn-sm">Edit</a>
+                            <a href="/admin/products/delete/${product._id}" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                `).join('')}
+            </tbody>
+        </table>
+        <div style="padding: 20px; text-align: center; border-top: 1px solid #e8e4df;">
+            <a href="/admin/products" class="btn btn-secondary">View All Products</a>
+        </div>
+    </div>
+    ` }) %>

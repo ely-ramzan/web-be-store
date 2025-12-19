@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/cart.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="page-header-cart">
+                <div class="container">
+                    <h1>Error</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <span>Error</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-container">
+                <div class="empty-cart">
+                    <h3>Oops! Something went wrong</h3>
+                    <p>
+                        <%= typeof message !=='undefined' ? message : 'An unexpected error occurred.' %>
+                    </p>
+                    <div style="margin-top: 25px;">
+                        <a href="/" class="btn-bestore btn-primary-bestore">Go to Homepage</a>
+                        <a href="/cart" class="btn-bestore btn-outline-bestore" style="margin-left: 10px;">View Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <%- include('partials/footer') %>
+    </body>
+
+</html>

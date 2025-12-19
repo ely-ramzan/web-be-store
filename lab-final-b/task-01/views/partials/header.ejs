@@ -1,0 +1,140 @@
+<header id="site-header" class="site-header">
+    <div class="header-placeholder"></div>
+    <div id="top-bar" class="top-bar-wrapper">
+        <div class="main-header-area">
+            <div class="container main-header-container">
+                <div class="logo">
+                    <a href="/">
+                        <img class="logo-main"
+                            src="https://themes.muffingroup.com/be/store/wp-content/uploads/2015/03/store.png"
+                            alt="BeStore Logo">
+                        <img class="logo-sticky"
+                            src="https://themes.muffingroup.com/be/store/wp-content/uploads/2015/03/store_s.png"
+                            alt="BeStore Sticky Logo">
+                    </a>
+                    <div class="logo-underline"></div>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">HOME</a></li>
+                        <li class="has-megamenu">
+                            <a href="/for-her" class="<%= currentPage === 'for-her' ? 'active' : '' %>">FOR HER</a>
+                            <div class="mega-menu-wrapper">
+                                <div class="mega-menu"
+                                    style="background-image: url('https://themes.muffingroup.com/be/store/wp-content/uploads/2015/03/home_store_megamenu_her.jpg');">
+                                    <div class="mega-menu-column">
+                                        <span class="mega-menu-title">CLOTHING</span>
+                                        <ul>
+                                            <li><a href="#">Dresses</a></li>
+                                            <li><a href="#">Jackets</a></li>
+                                            <li><a href="#">Jeans</a></li>
+                                            <li><a href="#">Shorts</a></li>
+                                            <li><a href="#">Tops</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="mega-menu-column">
+                                        <span class="mega-menu-title">SHOES</span>
+                                        <ul>
+                                            <li><a href="#">Ankle boots</a></li>
+                                            <li><a href="#">Ballet pumps</a></li>
+                                            <li><a href="#">Heels</a></li>
+                                            <li><a href="#">Sandals</a></li>
+                                            <li><a href="#">Slippers</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="mega-menu-column">
+                                        <span class="mega-menu-title">ACCESSORIES</span>
+                                        <ul>
+                                            <li><a href="#">Bags</a></li>
+                                            <li><a href="#">Belts</a></li>
+                                            <li><a href="#">Hats & Caps</a></li>
+                                            <li><a href="#">Rucksacks</a></li>
+                                            <li><a href="#">Sunglasses</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="has-megamenu">
+                            <a href="/for-him" class="<%= currentPage === 'for-him' ? 'active' : '' %>">FOR HIM</a>
+                            <div class="mega-menu-wrapper">
+                                <div class="mega-menu"
+                                    style="background-image: url('https://themes.muffingroup.com/be/store/wp-content/uploads/2015/03/home_store_megamenu_him.jpg');">
+                                    <div class="mega-menu-column">
+                                        <span class="mega-menu-title">CLOTHING</span>
+                                        <ul>
+                                            <li><a href="#">Hoodies</a></li>
+                                            <li><a href="#">Jackets</a></li>
+                                            <li><a href="#">Jeans</a></li>
+                                            <li><a href="#">T-shirts</a></li>
+                                            <li><a href="#">Trousers</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="mega-menu-column">
+                                        <span class="mega-menu-title">SHOES</span>
+                                        <ul>
+                                            <li><a href="#">Business Shoes</a></li>
+                                            <li><a href="#">Moccasins</a></li>
+                                            <li><a href="#">Outdoor Shoes</a></li>
+                                            <li><a href="#">Sandals</a></li>
+                                            <li><a href="#">Trainers</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="mega-menu-column">
+                                        <span class="mega-menu-title">ACCESSORIES</span>
+                                        <ul>
+                                            <li><a href="#">Bags</a></li>
+                                            <li><a href="#">Belts</a></li>
+                                            <li><a href="#">Hats & Caps</a></li>
+                                            <li><a href="#">Rucksacks</a></li>
+                                            <li><a href="#">Sunglasses</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="/brands" class="<%= currentPage === 'brands' ? 'active' : '' %>">BRANDS</a></li>
+                        <li><a href="/blog" class="<%= currentPage === 'blog' ? 'active' : '' %>">BLOG</a></li>
+                        <li><a href="/contact" class="<%= currentPage === 'contact' ? 'active' : '' %>">CONTACT US</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="top_bar_right">
+                <a href="/cart" class="cart-icon" aria-label="Shopping Cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="#" class="search-icon" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    window.onscroll = function () {
+        stickyHeader();
+    };
+
+    var header = document.getElementById("site-header");
+    var stickyPoint = 150;
+
+    function stickyHeader() {
+        if (window.pageYOffset > stickyPoint) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+    }
+</script>

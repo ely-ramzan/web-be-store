@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/category.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="page-header">
+                <div class="container">
+                    <h1>FOR HER</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <span>For Her</span>
+                    </div>
+                </div>
+            </div>
+
+            <main class="container">
+                <div class="category-layout">
+                    <aside class="category-sidebar">
+                        <div class="sidebar-widget">
+                            <h4>Product Type</h4>
+                            <ul class="filter-list">
+                                <li><a href="/for-her"
+                                        class="filter-link <%= !filters.productType ? 'active' : '' %>">All Products</a>
+                                </li>
+                                <li><a href="/for-her?productType=clothing"
+                                        class="filter-link <%= filters.productType === 'clothing' ? 'active' : '' %>">Clothing</a>
+                                </li>
+                                <li><a href="/for-her?productType=shoes"
+                                        class="filter-link <%= filters.productType === 'shoes' ? 'active' : '' %>">Shoes</a>
+                                </li>
+                                <li><a href="/for-her?productType=accessories"
+                                        class="filter-link <%= filters.productType === 'accessories' ? 'active' : '' %>">Accessories</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4>Filter by Price</h4>
+                            <form action="/for-her" method="GET" class="price-filter">
+                                <input type="hidden" name="productType" value="<%= filters.productType || '' %>">
+                                <input type="hidden" name="sortBy" value="<%= filters.sortBy || '' %>">
+                                <div class="price-inputs">
+                                    <input type="number" name="minPrice" placeholder="Min" min="0"
+                                        value="<%= filters.minPrice || '' %>">
+                                    <span>-</span>
+                                    <input type="number" name="maxPrice" placeholder="Max" min="0"
+                                        value="<%= filters.maxPrice || '' %>">
+                                </div>
+                                <button type="submit" class="apply-filter-btn">Apply</button>
+                            </form>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h4>Items Per Page</h4>
+                            <form action="/for-her" method="GET">
+                                <input type="hidden" name="productType" value="<%= filters.productType || '' %>">
+                                <input type="hidden" name="sortBy" value="<%= filters.sortBy || '' %>">
+                                <input type="hidden" name="minPrice" value="<%= filters.minPrice || '' %>">
+                                <input type="hidden" name="maxPrice" value="<%= filters.maxPrice || '' %>">
+                                <select name="limit" class="limit-select" onchange="this.form.submit()">
+                                    <option value="6" <%=pagination.limit===6 ? 'selected' : '' %>>6</option>
+                                    <option value="10" <%=pagination.limit===10 ? 'selected' : '' %>>10</option>
+                                    <option value="20" <%=pagination.limit===20 ? 'selected' : '' %>>20</option>
+                                    <option value="50" <%=pagination.limit===50 ? 'selected' : '' %>>50</option>
+                                </select>
+                            </form>
+                        </div>
+                    </aside>
+
+                    <div class="category-content">
+                        <div class="category-toolbar">
+                            <span class="results-count">
+                                <% if (pagination.totalProducts> 0) { %>
+                                    Showing <%= ((pagination.currentPage - 1) * pagination.limit) + 1 %>–<%=
+                                            Math.min(pagination.currentPage * pagination.limit,
+                                            pagination.totalProducts) %> of <%= pagination.totalProducts %> results
+                                                <% } else { %>
+                                                    No products found
+                                                    <% } %>
+                            </span>
+                            <form action="/for-her" method="GET" style="display: inline;">
+                                <input type="hidden" name="productType" value="<%= filters.productType || '' %>">
+                                <input type="hidden" name="minPrice" value="<%= filters.minPrice || '' %>">
+                                <input type="hidden" name="maxPrice" value="<%= filters.maxPrice || '' %>">
+                                <input type="hidden" name="limit" value="<%= pagination.limit %>">
+                                <select name="sortBy" class="sort-select" onchange="this.form.submit()">
+                                    <option value="" <%=!filters.sortBy ? 'selected' : '' %>>Default sorting</option>
+                                    <option value="price-low" <%=filters.sortBy==='price-low' ? 'selected' : '' %>
+                                        >Price: Low to High</option>
+                                    <option value="price-high" <%=filters.sortBy==='price-high' ? 'selected' : '' %>
+                                        >Price: High to Low</option>
+                                    <option value="name" <%=filters.sortBy==='name' ? 'selected' : '' %>>Name: A to Z
+                                    </option>
+                                </select>
+                            </form>
+                        </div>
+
+                        <div class="category-product-grid">
+                            <% if (typeof error !=='undefined' ) { %>
+                                <p class="error">
+                                    <%= error %>
+                                </p>
+                                <% } else if (products.length===0) { %>
+                                    <p class="no-products">No products found matching your criteria.</p>
+                                    <% } else { %>
+                                        <% products.forEach(product=> { %>
+                                            <div class="category-product-card">
+                                                <div class="product-image">
+                                                    <a href="#">
+                                                        <img src="<%= product.image %>" alt="<%= product.name %>"
+                                                            onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
+                                                    </a>
+                                                </div>
+                                                <h4 class="product-title"><a href="#">
+                                                        <%= product.name %>
+                                                    </a></h4>
+                                                <div class="product-price">£<%= product.price.toFixed(2) %>
+                                                </div>
+                                                <span class="product-type-badge">
+                                                    <%= product.productType %>
+                                                </span>
+                                                <button type="button" class="add-to-cart"
+                                                    data-product-id="<%= product._id %>"
+                                                    onclick="addToCart('<%= product._id %>')">Add to Cart</button>
+                                            </div>
+                                            <% }); %>
+                                                <% } %>
+                        </div>
+
+                        <% if (pagination.totalPages> 1) { %>
+                            <div class="pagination">
+                                <% if (pagination.hasPrevPage) { %>
+                                    <a
+                                        href="/for-her?page=<%= pagination.currentPage - 1 %>&productType=<%= filters.productType || '' %>&sortBy=<%= filters.sortBy || '' %>&limit=<%= pagination.limit %>&minPrice=<%= filters.minPrice || '' %>&maxPrice=<%= filters.maxPrice || '' %>">←</a>
+                                    <% } %>
+                                        <% for (let i=1; i <=pagination.totalPages; i++) { %>
+                                            <% if (i===pagination.currentPage) { %>
+                                                <span class="current">
+                                                    <%= i %>
+                                                </span>
+                                                <% } else { %>
+                                                    <a
+                                                        href="/for-her?page=<%= i %>&productType=<%= filters.productType || '' %>&sortBy=<%= filters.sortBy || '' %>&limit=<%= pagination.limit %>&minPrice=<%= filters.minPrice || '' %>&maxPrice=<%= filters.maxPrice || '' %>">
+                                                        <%= i %>
+                                                    </a>
+                                                    <% } %>
+                                                        <% } %>
+                                                            <% if (pagination.hasNextPage) { %>
+                                                                <a
+                                                                    href="/for-her?page=<%= pagination.currentPage + 1 %>&productType=<%= filters.productType || '' %>&sortBy=<%= filters.sortBy || '' %>&limit=<%= pagination.limit %>&minPrice=<%= filters.minPrice || '' %>&maxPrice=<%= filters.maxPrice || '' %>">→</a>
+                                                                <% } %>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+            </main>
+
+            <%- include('partials/footer') %>
+
+                <script>
+                    function addToCart(productId) {
+                        fetch('/cart/add', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ productId: productId, quantity: 1 })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // Update cart count in header
+                                    const cartCount = document.querySelector('.cart-count');
+                                    if (cartCount) {
+                                        cartCount.textContent = data.cartCount;
+                                    }
+                                    // Show feedback
+                                    const btn = document.querySelector(`button[data-product-id="${productId}"]`);
+                                    if (btn) {
+                                        const originalText = btn.textContent;
+                                        btn.textContent = 'Added!';
+                                        btn.style.backgroundColor = '#28a745';
+                                        setTimeout(() => {
+                                            btn.textContent = originalText;
+                                            btn.style.backgroundColor = '';
+                                        }, 1500);
+                                    }
+                                } else {
+                                    alert('Error adding to cart: ' + data.error);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Error adding to cart');
+                            });
+                    }
+                </script>
+    </body>
+
+</html>

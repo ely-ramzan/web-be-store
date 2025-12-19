@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', { title: title, extraStyles: ['/css/cart.css'] }) %>
+
+    <body>
+        <%- include('partials/header', { currentPage: currentPage }) %>
+
+            <div class="page-header-cart">
+                <div class="container">
+                    <h1>Cart</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <span>Cart</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-container">
+                <% if (cart.length===0) { %>
+                    <div class="empty-cart">
+                        <h3>Your cart is currently empty</h3>
+                        <p>Browse our products and add items to your cart.</p>
+                        <div style="display: flex; justify-content: center; gap: 15px;">
+                            <a href="/for-her" class="btn-bestore btn-primary-bestore">Shop For Her</a>
+                            <a href="/for-him" class="btn-bestore btn-outline-bestore">Shop For Him</a>
+                        </div>
+                    </div>
+                    <% } else { %>
+                        <div class="cart-layout">
+                            <div class="cart-main">
+                                <table class="cart-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 50%;">Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Subtotal</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% cart.forEach(function(item) { %>
+                                            <tr>
+                                                <td>
+                                                    <div class="product-cell">
+                                                        <% if (item.image) { %>
+                                                            <img src="<%= item.image %>" alt="<%= item.name %>"
+                                                                class="product-image">
+                                                            <% } else { %>
+                                                                <div class="product-image"
+                                                                    style="background: #f7f7f7; display: flex; align-items: center; justify-content: center; color: #999; font-size: 11px;">
+                                                                    No Image</div>
+                                                                <% } %>
+                                                                    <span class="product-name">
+                                                                        <%= item.name %>
+                                                                    </span>
+                                                    </div>
+                                                </td>
+                                                <td class="price">£<%= item.price.toFixed(2) %>
+                                                </td>
+                                                <td>
+                                                    <form action="/cart/update/<%= item.productId %>" method="POST">
+                                                        <input type="number" name="quantity"
+                                                            value="<%= item.quantity %>" min="1" max="99"
+                                                            class="quantity-input" onchange="this.form.submit()">
+                                                    </form>
+                                                </td>
+                                                <td class="subtotal">£<%= (item.price * item.quantity).toFixed(2) %>
+                                                </td>
+                                                <td>
+                                                    <form action="/cart/remove/<%= item.productId %>" method="POST">
+                                                        <button type="submit" class="remove-btn"
+                                                            title="Remove item">&times;</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                    </tbody>
+                                </table>
+
+                                <div class="cart-actions">
+                                    <a href="/for-her" class="btn-bestore btn-outline-bestore">← Continue Shopping</a>
+                                </div>
+                            </div>
+
+                            <div class="cart-sidebar">
+                                <div class="cart-totals">
+                                    <h3>Cart Totals</h3>
+                                    <div class="totals-row">
+                                        <span>Subtotal</span>
+                                        <span>£<%= grandTotal.toFixed(2) %></span>
+                                    </div>
+                                    <div class="totals-row">
+                                        <span>Shipping</span>
+                                        <span>Free Shipping</span>
+                                    </div>
+                                    <div class="totals-row grand-total">
+                                        <span>Total</span>
+                                        <span>£<%= grandTotal.toFixed(2) %></span>
+                                    </div>
+                                    <a href="/order/preview"
+                                        class="btn-bestore btn-primary-bestore btn-full-width">Proceed to Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+            </div>
+
+            <%- include('partials/footer') %>
+    </body>
+
+</html>

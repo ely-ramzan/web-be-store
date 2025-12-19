@@ -1,0 +1,102 @@
+/* Brands Page Styles */
+
+.brands-page-header {
+    background-color: #f7f7f7;
+    padding: 50px 0;
+    text-align: center;
+    border-bottom: 1px solid #e7e0d3;
+}
+
+.brands-page-header h1 {
+    font-size: 36px;
+    font-weight: 300;
+    color: #000;
+    margin: 0 0 15px;
+    letter-spacing: 2px;
+}
+
+.brands-page-header p {
+    color: #585858;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Brands Grid */
+.brands-section {
+    padding: 60px 0;
+}
+
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+}
+
+.brand-card {
+    border: 1px solid #e7e0d3;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.brand-card:hover {
+    border-color: #a4916d;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.brand-card img {
+    max-width: 120px;
+    height: auto;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    margin: 0 auto;
+}
+
+.brand-card:hover img {
+    opacity: 1;
+}
+
+.brand-card h4 {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+}
+
+/* Partner Brands Section */
+.partner-brands {
+    background-color: #f7f7f7;
+    padding: 60px 0;
+}
+
+.partner-brands h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 300;
+    color: #000;
+    margin-bottom: 40px;
+}
+
+.partner-brands h2 span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .brands-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .brand-card {
+        padding: 25px 15px;
+    }
+}
